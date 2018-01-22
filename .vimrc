@@ -1,0 +1,87 @@
+call plug#begin('~/.vim/plugged')
+
+Plug 'altercation/vim-colors-solarized'
+Plug 'PotatoesMaster/i3-vim-syntax'
+Plug 'scrooloose/nerdtree'
+Plug 'easymotion/vim-easymotion'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'itchyny/lightline.vim'
+
+call plug#end()
+
+set nu
+set ruler
+set mouse=a
+set laststatus=2
+set cursorline
+set noshowmode
+
+syntax enable
+set background=dark
+colorscheme solarized
+
+" lightline
+let g:lightline = {
+      \ 'colorscheme': 'solarized',
+      \ }
+
+" nerdtree
+let NERDTreeShowHidden=1
+let g:NERDTreeWinPos="left"
+let g:NERDTreeDirArrows=0
+
+" ctrl-p
+let g:cctrlp_show_hidden = 1
+
+" =========== KEYBINDINGS ==========
+" change leader key
+let mapleader = ","
+
+" NERDTree
+nmap <leader>o :NERDTreeFocus<cr>
+nmap <F2> :NERDTreeToggle<CR>
+
+" leader-s to save
+nnoremap <leader>s :w<cr>
+" leader-q to quit/ DOES NOT SAVE
+nnoremap <leader>q :q!<cr>
+" lader-x to save/quit
+nnoremap <leader>x :x<cr>
+" Commenting
+	" space-1 insert "!" commenting
+		nnoremap <leader>1 :norm i!<cr>
+		vnoremap <leader>1 :norm i!<cr>
+
+	" space-' insert """ commenting
+		nnoremap <leader>' :norm i"<cr>
+		vnoremap <leader>' :norm i"<cr>
+
+	" space-3 insert "#" commenting
+		nnoremap <leader>3 :norm i#<cr>
+		vnoremap <leader>3 :norm i#<cr>
+
+	" space-- insert "--" commenting
+		nnoremap <leader>- :norm i--<cr>
+		vnoremap <leader>- :norm i--<cr>
+
+	" space-6 uncomment
+		nnoremap <leader>6 :norm ^x<cr>
+		vnoremap <leader>6 :norm ^x<cr>
+
+	" edit config files
+		nnoremap <leader>ez :tabnew ~/.zshrc<cr>
+		nnoremap <leader>ev :tabnew $MYVIMRC<cr>
+" Reload vimrc
+	nnoremap <leader>rv :source<Space>$MYVIMRC<cr>
+
+" Convenience
+	nmap G Gzz
+	nmap n nzz
+	nmap N Nzz
+
+" Quick pairs
+	imap <leader>' ''<ESC>i
+	imap <leader>" ""<ESC>i
+	imap <leader>( ()<ESC>i
+	imap <leader>[ {}<ESC>i
+
