@@ -6,6 +6,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'easymotion/vim-easymotion'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'itchyny/lightline.vim'
+Plug 'JamshedVesuna/vim-markdown-preview'
 
 call plug#end()
 
@@ -20,6 +21,12 @@ syntax enable
 set background=dark
 colorscheme solarized
 
+" Spell-check set to F6:
+	map <F6> :setlocal spell! spelllang=en_us,es<CR>
+
+" rmarkdown
+autocmd Filetype rmd map <F5> :!echo<space>"require(rmarkdown);<space>render('<c-r>%')"<space>\|<space>R<space>--vanilla<enter>
+
 " lightline
 let g:lightline = {
       \ 'colorscheme': 'solarized',
@@ -32,6 +39,11 @@ let g:NERDTreeDirArrows=0
 
 " ctrl-p
 let g:cctrlp_show_hidden = 1
+
+" markdown preview
+let vim_markdown_preview_hotkey='<C-m>'
+let vim_markdown_preview_toggle=1
+let vim_markdown_preview_browser='Google Chrome'
 
 " =========== KEYBINDINGS ==========
 " change leader key

@@ -47,6 +47,7 @@ alias cfv='vim ~/git/dotfiles/.vimrc'
 alias cfi='vim ~/git/dotfiles/.config/i3/config'
 alias cft='vim ~/git/dotfiles/.tmux.conf'
 alias cfb='vim ~/git/dotfiles/.bashrc'
+alias cfp='vim ~/git/dotfiles/.config/polybar/config'
 
 alias ..='cd ..'
 alias clock='tty-clock -t -s -c'

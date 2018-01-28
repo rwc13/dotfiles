@@ -20,7 +20,7 @@ bindsym $mod+Return exec $term
 bindsym $mod+Shift+Return exec $term -e tmux
 bindsym $mod+i exec $term -e htop
 bindsym $mod+r exec $term -e ranger
-bindsym $mod+e exec $term -e calcurse
+#bindsym $mod+e exec $term -e calcurse
 
 # >>> programs <<<
 
@@ -70,7 +70,7 @@ bindsym F11 fullscreen toggle
 # change container layout
 #bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
-#bindsym $mod+e layout toggle split
+bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -114,15 +114,19 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 # >>> bar <<<
 
-bar {
-	status_command i3status #-c ~/.config/i3/i3status.conf 
-	position top
-	font pango:mono 6
-}
+#bar {
+#	status_command i3status #-c ~/.config/i3/i3status.conf 
+#	position top
+#	font pango:mono 6
+#}
+
+# >>> floating <<<
+
+for_window [class="MPlayer"] floating enable
 
 # >>> autostart <<<
 
-#exec_always --no-startup-id ~/.config/polybar/launch.sh
+exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec --no-startup-id nitrogen --restore
 
 # vim:filetype=i3
