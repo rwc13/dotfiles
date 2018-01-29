@@ -28,6 +28,11 @@ if [[ -z $DISPLAY ]]; then
   
 fi
 
+# start tmux
+if [[ -z "$TMUX" ]]; then
+	tmux;
+fi
+
 # aliases
 
 alias ls='ls --color=auto'
@@ -48,6 +53,8 @@ alias cfi='vim ~/git/dotfiles/.config/i3/config'
 alias cft='vim ~/git/dotfiles/.tmux.conf'
 alias cfb='vim ~/git/dotfiles/.bashrc'
 alias cfp='vim ~/git/dotfiles/.config/polybar/config'
+alias cdg='cd ~/git/dotfiles'
+alias gs='git status'
 
 alias ..='cd ..'
 alias clock='tty-clock -t -s -c'

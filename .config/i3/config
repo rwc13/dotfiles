@@ -34,6 +34,8 @@ bindsym $mod+q kill
 
 bindsym $mod+d exec rofi -show drun -theme bmenu
 
+bindsym Print exec scrot ~/screenshots/%b%d::%H%M%S.png
+
 bindsym $mod+shift+Esc exec betterlockscreen --lock
 
 # change focus
