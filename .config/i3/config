@@ -2,134 +2,207 @@
 
 # >>> settings <<<
 
-font pango:Fixedsys Excelsior 3.01 8
+font pango:FixedFixedsys 8
 floating_modifier $mod
 show_marks no
-focus_follows_mouse yes
+new_window pixel 5
+#focus_follows_mouse no
+gaps inner 0
+gaps outer 0
 
 # >>> set <<<
 
 set $mod Mod4
-set $term st
+set $term  st
 set $browser chromium
 set $fm thunar
+set $exe exec --no-startup-id exec
+set $alt bindsym Mod1
+set $win bindsym Mod4
 
-# >>> terminal <<<
+# >>> keybindings <<<
 
-bindsym $mod+Return exec $term
-bindsym $mod+Shift+Return exec $term -e tmux
-bindsym $mod+i exec $term -e htop
-bindsym $mod+r exec $term -e ranger
-#bindsym $mod+e exec $term -e calcurse
+$win+Return exec $term
+$win+Shift+Return exec $term
+$win+i exec $term -e htop
+$win+r exec $term -e ranger
+bindsym $mod+BackSpace exec 
+$win+m exec $term -e mocp
 
-# >>> programs <<<
+$win+p exec pavucontrol
+$win+f exec $fm
+$win+c exec $browser
+#$win+f exec firefox
+$win+n exec nitrogen
+$win+g exec gimp
 
-bindsym $mod+t exec $fm
-bindsym $mod+c exec $browser
-bindsym $mod+f exec firefox
-bindsym $mod+s exec lxappearance
-bindsym $mod+n exec nitrogen
+$win+d exec rofi -show drun -theme bmenu
+#$win+d exec dmenu_run -fn 'FixedFixedsys-8'
 
-bindsym $mod+q kill
+bindsym Print exec scrot ~/Pictures/screenshots/%b%d::%H%M%S.png
+bindsym F1 $exe echo "help" > /dev/null
+bindsym F11 fullscreen toggle
+$win+F5 exec sudo systemctl restart NetworkManager
+$win+Tab workspace back_and_forth
 
-bindsym $mod+d exec rofi -show drun -theme bmenu
+# gaps
+bindsym $mod+Shift+t gaps inner current set 15; gaps outer current set 15
+bindsym $mod+Shift+d gaps inner current set 0; gaps outer current set 0
 
-bindsym Print exec scrot ~/screenshots/%b%d::%H%M%S.png
+bindsym $mod+Shift+u	resize shrink height 10 px or 10 ppt
+bindsym $mod+Shift+i	resize grow height 10 px or 10 ppt
 
-bindsym $mod+shift+Esc exec betterlockscreen --lock
+bindsym $mod+Shift+o	resize grow width 10 px or 10 ppt
+bindsym $mod+Shift+y	resize shrink width 10 px or 10ppt
+
+bindsym $mod+z gaps outer current plus 5
+bindsym $mod+Shift+z gaps outer current minus 5
+
+bindsym $mod+a gaps inner current plus 5
+bindsym $mod+Shift+a gaps inner current minus 5
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+$win+j focus left
+$win+k focus down
+$win+l focus up
+$win+semicolon focus right
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
+$win+Left focus left
+$win+Down focus down
+$win+Up focus up
+$win+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
+$win+Shift+j move left
+$win+Shift+k move down
+$win+Shift+l move up
+$win+Shift+semicolon move right
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+$win+Shift+Left move left
+$win+Shift+Down move down
+$win+Shift+Up move up
+$win+Shift+Right move right
 
 # splits
-bindsym $mod+h split h
-bindsym $mod+v split v
-
-# fullscreen
-bindsym F11 fullscreen toggle
+$win+h split h
+$win+v split v
 
 # change container layout
-#bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+#$win+s layout stacking
+$win+w layout tabbed
+#$win+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+#$win+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+$win+space floating toggle
+#$win+space focus mode_toggle
 
 # focus the parent container
-bindsym $mod+a focus parent
+#$win+a focus parent
 
 # focus the child container
-#bindsym $mod+d focus child
+#$win+d focus child
+
+# >>> window rules <<<
+
+bindsym $mod+s [instance="dropdown"] scratchpad show; [instance="dropdown"] move position center
+bindsym $mod+Shift+s resize shrink height 10 px or 10 ppt
+for_window [instance="dropdown"] floating enable
+for_window [instance="dropdown"] resize set 550 350
+for_window [instance="dropdown"] move scratchpad
+for_window [instance="dropdown"] border pixel 5
+exec --no-startup-id $term -n dropdown
+
+for_window [window_role="gimp-dock"] floating disable; move left; resize shrink width 60 px or 60ppt
+for_window [window_role="gimp-toolbox"] floating disable; move right; resize grow width 30 px or 30ppt
+
+for_window [class="MPlayer"] floating enable
+
+workspace $ws2 gaps inner 0
+workspace $ws2 gaps outer 0
+
+# >>> i3 exit and reload <<<
+
+$win+x exec i3lock-fancy -p
+$win+e exec ~/scripts/rofi-powermenu
+#$win+z exec ~/scripts/rofi-favorite
+$win+q kill
+bindsym F4 kill
+$win+Shift+c reload
+$win+Shift+r restart
+$win+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# >>> workspaces <<<
+
+#set $ws1 "1:"
+#set $ws2 "2:"
+#set $ws3 "3:"
+#set $ws4 "4:"
+#set $ws5 "5:"
+#set $ws6 "6:"
+#set $ws7 "7:"
+#set $ws8 "8:"
+#set $ws9 "9:"
+#set $ws10 "10:"
+
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
 
 # switch to workspace
-bindsym $mod+1 workspace 1
-bindsym $mod+2 workspace 2
-bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
-bindsym $mod+5 workspace 5
-bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
+bindsym $mod+1		workspace $ws1
+bindsym $mod+2		workspace $ws2
+bindsym $mod+3		workspace $ws3
+bindsym $mod+4		workspace $ws4
+bindsym $mod+5		workspace $ws5
+bindsym $mod+6		workspace $ws6
+bindsym $mod+7		workspace $ws7
+bindsym $mod+8		workspace $ws8
+bindsym $mod+9		workspace $ws9
+bindsym $mod+0		workspace $ws10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1
-bindsym $mod+Shift+2 move container to workspace 2
-bindsym $mod+Shift+3 move container to workspace 3
-bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10
-
-bindsym $mod+Shift+c reload
-bindsym $mod+Shift+r restart
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+1	move container to workspace $ws1
+bindsym $mod+Shift+2	move container to workspace $ws2
+bindsym $mod+Shift+3	move container to workspace $ws3
+bindsym $mod+Shift+4	move container to workspace $ws4
+bindsym $mod+Shift+5	move container to workspace $ws5
+bindsym $mod+Shift+6	move container to workspace $ws6
+bindsym $mod+Shift+7	move container to workspace $ws7
+bindsym $mod+Shift+8	move container to workspace $ws8
+bindsym $mod+Shift+9	move container to workspace $ws9
+bindsym $mod+Shift+0	move container to workspace $ws10
 
 # >>> bar <<<
 
 #bar {
-#	status_command i3status #-c ~/.config/i3/i3status.conf 
-#	position top
-#	font pango:mono 6
+#	status_command ~/.config/bumblebee-status/bumblebee-status -m sensors nic battery kernel datetime -p nic.exclude="enp0s25,lo" datetime.format="%a, %b %d, %y at %I:%M %p" -t powerline
+#	position bottom
+#	font pango:Droid Sans Mono for Powerline 7
 #}
 
-# >>> floating <<<
+# >>> polybar <<<
 
-for_window [class="MPlayer"] floating enable
+exec_always --no-startup-id ~/.config/polybar/launch.sh
 
 # >>> autostart <<<
 
-exec_always --no-startup-id ~/.config/polybar/launch.sh
-exec --no-startup-id nitrogen --restore
+$exe nitrogen --restore
+$exe xmodmap ~/scripts/remaps
+$exe compton
+#$exe nm-applet
+#exec --no-startup-id pa-applet
 
 # vim:filetype=i3
 

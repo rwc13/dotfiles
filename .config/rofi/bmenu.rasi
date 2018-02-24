@@ -44,6 +44,6 @@ configuration {
     padding: 0px 2px;
 }
 #element selected {
-    background-color: @bg1;
+    background-color: #333333;
     text-color: @accent;
 }

@@ -1,10 +1,12 @@
 	* {
 	accent: #458588;
-	bg1: #252323;
-	bg2: #252323;
-	fg1: #bdae93;
+	bg1: #999999;
+	bg2: #cc000000;
+	fg1: #111111;
 	fg2: #f9f5d7;
 	redish: #cc241d;
-	font1: "Fixedsys Excelsior 3.01 12";
+	font1: "FixedFixedsys 12";
 	
 	}
+
+
