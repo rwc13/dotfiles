@@ -1,49 +1,53 @@
-# i3 config
-
-# >>> settings <<<
+# Settings {{{
 
 font pango:FixedFixedsys 8
 floating_modifier $mod
 show_marks no
-new_window pixel 5
+#new_window pixel 5
 #focus_follows_mouse no
 gaps inner 0
 gaps outer 0
 
-# >>> set <<<
+# Variables
 
 set $mod Mod4
-set $term  st
+set $term  xfce4-terminal
 set $browser chromium
 set $fm thunar
 set $exe exec --no-startup-id exec
 set $alt bindsym Mod1
 set $win bindsym Mod4
 
-# >>> keybindings <<<
+# }}}
 
+# Keybindings {{{
+
+# Start a Terminal
 $win+Return exec $term
 $win+Shift+Return exec $term
+
+# Basic Commands
+$win+q kill
+$win+Shift+c reload
+$win+Shift+r restart
+$win+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# Rofi
+$win+d exec rofi -show drun -theme bmenu
+$win+e exec ~/scripts/rofi-powermenu
+#$win+d exec dmenu_run
+
+# i3 Lock
+$win+x exec i3lock-fancy -p
+
+# Spawn Programs
 $win+i exec $term -e htop
 $win+r exec $term -e ranger
-bindsym $mod+BackSpace exec 
-$win+m exec $term -e mocp
-
 $win+p exec pavucontrol
 $win+f exec $fm
-$win+c exec $browser
+$win+b exec $browser
 #$win+f exec firefox
 $win+n exec nitrogen
-$win+g exec gimp
-
-$win+d exec rofi -show drun -theme bmenu
-#$win+d exec dmenu_run -fn 'FixedFixedsys-8'
-
-bindsym Print exec scrot ~/Pictures/screenshots/%b%d::%H%M%S.png
-bindsym F1 $exe echo "help" > /dev/null
-bindsym F11 fullscreen toggle
-$win+F5 exec sudo systemctl restart NetworkManager
-$win+Tab workspace back_and_forth
 
 # gaps
 bindsym $mod+Shift+t gaps inner current set 15; gaps outer current set 15
@@ -61,11 +65,15 @@ bindsym $mod+Shift+z gaps outer current minus 5
 bindsym $mod+a gaps inner current plus 5
 bindsym $mod+Shift+a gaps inner current minus 5
 
+# Changing Focus {{{
 # change focus
 $win+j focus left
 $win+k focus down
 $win+l focus up
 $win+semicolon focus right
+
+# Change workspaces
+$win+Tab workspace back_and_forth
 
 # alternatively, you can use the cursor keys:
 $win+Left focus left
@@ -94,21 +102,27 @@ $win+v split v
 $win+w layout tabbed
 #$win+e layout toggle split
 
-# toggle tiling / floating
-#$win+Shift+space floating toggle
-
 # change focus between tiling / floating windows
 $win+space floating toggle
 #$win+space focus mode_toggle
 
 # focus the parent container
-#$win+a focus parent
+$win+w focus parent
+# }}}
 
-# focus the child container
-#$win+d focus child
+# F Buttons
+bindsym F1 $exe echo "help" > /dev/null
+bindsym F4 kill
+$win+F5 exec sudo systemctl restart NetworkManager
+bindsym F11 fullscreen toggle
+bindsym Print exec scrot ~/Pictures/screenshots/%b%d::%H%M%S.png
+bindsym $mod+BackSpace exec
 
-# >>> window rules <<<
+# }}}
 
+# Rules and Scratchpad {{{
+
+# Scratchpad
 bindsym $mod+s [instance="dropdown"] scratchpad show; [instance="dropdown"] move position center
 bindsym $mod+Shift+s resize shrink height 10 px or 10 ppt
 for_window [instance="dropdown"] floating enable
@@ -117,26 +131,19 @@ for_window [instance="dropdown"] move scratchpad
 for_window [instance="dropdown"] border pixel 5
 exec --no-startup-id $term -n dropdown
 
-for_window [window_role="gimp-dock"] floating disable; move left; resize shrink width 60 px or 60ppt
-for_window [window_role="gimp-toolbox"] floating disable; move right; resize grow width 30 px or 30ppt
-
+# Rules for Specific Programs
 for_window [class="MPlayer"] floating enable
 
+# browser pop-ups
+for_window [window_role="pop-up"] floating enable
+
+# Worspace Indivdual Settings
 workspace $ws2 gaps inner 0
 workspace $ws2 gaps outer 0
 
-# >>> i3 exit and reload <<<
+# }}}
 
-$win+x exec i3lock-fancy -p
-$win+e exec ~/scripts/rofi-powermenu
-#$win+z exec ~/scripts/rofi-favorite
-$win+q kill
-bindsym F4 kill
-$win+Shift+c reload
-$win+Shift+r restart
-$win+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-
-# >>> workspaces <<<
+# Workspaces {{{
 
 #set $ws1 "1:"
 #set $ws2 "2:"
@@ -184,25 +191,33 @@ bindsym $mod+Shift+8	move container to workspace $ws8
 bindsym $mod+Shift+9	move container to workspace $ws9
 bindsym $mod+Shift+0	move container to workspace $ws10
 
-# >>> bar <<<
+# }}}
 
-#bar {
-#	status_command ~/.config/bumblebee-status/bumblebee-status -m sensors nic battery kernel datetime -p nic.exclude="enp0s25,lo" datetime.format="%a, %b %d, %y at %I:%M %p" -t powerline
-#	position bottom
-#	font pango:Droid Sans Mono for Powerline 7
-#}
+# Bar {{{
 
-# >>> polybar <<<
+# Defualt i3status or i3blocks
+bar {
+	status_command ~/.config/bumblebee-status/bumblebee-status -m sensors nic battery kernel datetime -p nic.exclude="enp0s25,lo" datetime.format="%a, %b %d, %y at %I:%M %p" -t powerline
+	position bottom
+	font pango:Droid Sans Mono for Powerline 7
+}
 
-exec_always --no-startup-id ~/.config/polybar/launch.sh
+# polybar
+#exec_always --no-startup-id ~/.config/polybar/launch.sh
 
-# >>> autostart <<<
+# }}}
+
+# Autostart {{{
 
 $exe nitrogen --restore
 $exe xmodmap ~/scripts/remaps
 $exe compton
+#$exe dropbox
 #$exe nm-applet
-#exec --no-startup-id pa-applet
+#$exe pa-applet
+#$exe feh --fill ~/Pictures/wall.png
+
+# }}}
 
 # vim:filetype=i3
 
