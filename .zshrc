@@ -2,6 +2,7 @@
 # Author: rwc13
 
 # Themeing {{{
+
 ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="gentoo"
 
@@ -10,6 +11,7 @@ source $HOME/git/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 #}}}
 # Settings {{{
+
 export TERM=xterm-256color
 export EDITOR="nvim"
 export BROWSER="firefox"
@@ -22,7 +24,7 @@ export SNDPLAY="mpv"
 export PATH=${PATH}:/$HOME/scripts:/$HOME/bin
 
 # }}}
-# Alases {{{
+# Aliases {{{
 alias vim='nvim'
 alias Z='source ~/.zshrc'
 alias ls='ls --color=auto'
@@ -43,12 +45,12 @@ alias cfi='vim ~/git/dotfiles/.config/i3/config'
 alias cft='vim ~/git/dotfiles/.tmux.conf'
 alias cfb='vim ~/git/dotfiles/.bashrc'
 alias cfp='vim ~/git/dotfiles/.config/polybar/config'
-alias cfz='~/git/dotfiles/.zshrc'
+alias cfz='vim ~/git/dotfiles/.zshrc'
 alias cdg='cd ~/git/dotfiles'
 alias gs='git status'
 alias ss='cd ~/scripts && ls'
 alias D='cd ~/Downloads && ls'
-alias Syu='sudo pamcan -Syu'
+alias Syu='sudo pacman -Syu'
 alias gg='cd ~/git/dotfiles'
 alias cdG='cd ~/git/dotfiles/'
 alias ..='cd ..'
@@ -59,9 +61,9 @@ alias cfs='vim ~/src/work/st/config.h'
 # }}}
 # ZSH Functions {{{
 # start tmux
-if [[ -z "$TMUX" ]]; then
-	tmux;
-fi
+#if [[ -z "$TMUX" ]]; then
+#	tmux;
+#fi
 
 # }}}
 

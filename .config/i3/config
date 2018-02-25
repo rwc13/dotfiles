@@ -128,9 +128,8 @@ bindsym $mod+BackSpace exec
 
 # Scratchpad
 bindsym $mod+s [instance="dropdown"] scratchpad show; [instance="dropdown"] move position center
-bindsym $mod+Shift+s resize shrink height 10 px or 10 ppt
 for_window [instance="dropdown"] floating enable
-for_window [instance="dropdown"] resize set 550 350
+for_window [instance="dropdown"] resize set 650 450
 for_window [instance="dropdown"] move scratchpad
 for_window [instance="dropdown"] border pixel 5
 exec --no-startup-id $term -n dropdown
@@ -139,7 +138,7 @@ exec --no-startup-id $term -n dropdown
 for_window [class="MPlayer"] floating enable
 
 # browser pop-ups
-for_window [window_role="pop-up"] floating enable
+#for_window [window_role="pop-up"] floating enable
 
 # Worspace Indivdual Settings
 workspace $ws2 gaps inner 0
@@ -213,8 +212,8 @@ bar {
 
 $exe nitrogen --restore
 $exe xmodmap ~/scripts/remaps
-$exe compton
-#$exe dropbox
+#$exe compton
+$exe dropbox
 #$exe nm-applet
 #$exe pa-applet
 #$exe feh --fill ~/Pictures/wall.png
