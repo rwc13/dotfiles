@@ -1,5 +1,5 @@
 ZSH=/home/reed/.oh-my-zsh
-ZSH_THEME="powerline"
+ZSH_THEME="gentoo"
 
 source /home/reed/.oh-my-zsh/oh-my-zsh.sh
 source /home/reed/git/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

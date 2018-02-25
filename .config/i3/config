@@ -1,15 +1,21 @@
+# i3-config
+# Author: rwc13
+
 # Settings {{{
 
+# Basics
 font pango:FixedFixedsys 8
 floating_modifier $mod
 show_marks no
+#new_window none
 #new_window pixel 5
 #focus_follows_mouse no
+
+# Gaps
 gaps inner 0
 gaps outer 0
 
 # Variables
-
 set $mod Mod4
 set $term  xfce4-terminal
 set $browser chromium
@@ -19,7 +25,6 @@ set $alt bindsym Mod1
 set $win bindsym Mod4
 
 # }}}
-
 # Keybindings {{{
 
 # Start a Terminal
@@ -107,7 +112,7 @@ $win+space floating toggle
 #$win+space focus mode_toggle
 
 # focus the parent container
-$win+w focus parent
+#$win+w focus parent
 # }}}
 
 # F Buttons
@@ -119,7 +124,6 @@ bindsym Print exec scrot ~/Pictures/screenshots/%b%d::%H%M%S.png
 bindsym $mod+BackSpace exec
 
 # }}}
-
 # Rules and Scratchpad {{{
 
 # Scratchpad
@@ -142,7 +146,6 @@ workspace $ws2 gaps inner 0
 workspace $ws2 gaps outer 0
 
 # }}}
-
 # Workspaces {{{
 
 #set $ws1 "1:"
@@ -192,21 +195,20 @@ bindsym $mod+Shift+9	move container to workspace $ws9
 bindsym $mod+Shift+0	move container to workspace $ws10
 
 # }}}
-
 # Bar {{{
 
 # Defualt i3status or i3blocks
 bar {
-	status_command ~/.config/bumblebee-status/bumblebee-status -m sensors nic battery kernel datetime -p nic.exclude="enp0s25,lo" datetime.format="%a, %b %d, %y at %I:%M %p" -t powerline
+       #status_command ~/.config/bumblebee-status/bumblebee-status -m sensors nic battery kernel datetime -p nic.exclude="enp0s25,lo" datetime.format="%a, %b %d, %y at %I:%M %p" -t powerline
+        status_command i3status
 	position bottom
-	font pango:Droid Sans Mono for Powerline 7
+	font pango:Source Code Pro 6
 }
 
 # polybar
 #exec_always --no-startup-id ~/.config/polybar/launch.sh
 
 # }}}
-
 # Autostart {{{
 
 $exe nitrogen --restore
@@ -220,7 +222,3 @@ $exe compton
 # }}}
 
 # vim:filetype=i3
-
-
-
-
