@@ -1,9 +1,15 @@
-ZSH=/home/reed/.oh-my-zsh
+# .zshrc
+# Author: rwc13
+
+# Themeing {{{
+ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="gentoo"
 
-source /home/reed/.oh-my-zsh/oh-my-zsh.sh
-source /home/reed/git/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $HOME/.oh-my-zsh/oh-my-zsh.sh
+source $HOME/git/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+#}}}
+# Settings {{{
 export TERM=xterm-256color
 export EDITOR="nvim"
 export BROWSER="firefox"
@@ -15,6 +21,8 @@ export SNDPLAY="mpv"
 #export PATH
 export PATH=${PATH}:/$HOME/scripts:/$HOME/bin
 
+# }}}
+# Alases {{{
 alias vim='nvim'
 alias Z='source ~/.zshrc'
 alias ls='ls --color=auto'
@@ -48,10 +56,13 @@ alias clock='tty-clock -t -s -c'
 alias Ping='ping -c 3 google.com'
 alias cfs='vim ~/src/work/st/config.h'
 
+# }}}
+# ZSH Functions {{{
 # start tmux
 if [[ -z "$TMUX" ]]; then
 	tmux;
 fi
 
+# }}}
 
 clear
