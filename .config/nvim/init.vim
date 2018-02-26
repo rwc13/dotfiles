@@ -124,7 +124,8 @@ inoremap <F10> <esc>:Goyo<CR>a
 " Tmuxline
 
 " No powerline symbols
-let g:tmuxline_powerline_separators = 0
+let g:tmuxline_powerline_separators = 1
+let g:airline#extensions#tmuxline#enabled = 0
 
 " }}}
 " Colorscheme {{{

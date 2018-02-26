@@ -25,38 +25,91 @@ export PATH=${PATH}:/$HOME/scripts:/$HOME/bin
 
 # }}}
 # Aliases {{{
+
+# Basic
+alias k='exit'
+alias c='clear'
+
+# vim
 alias vim='nvim'
+alias e='vim'
+alias se='sudo vim'
+
+# Directory
 alias Z='source ~/.zshrc'
+alias B='source ~/.bashrc'
+alias ss='cd ~/scripts && ls'
+alias D='cd ~/Downloads && ls'
+alias gg='cd ~/git/dotfiles'
+alias cdG='cd ~/git/dotfiles/'
+alias ..='cd ..'
 alias ls='ls --color=auto'
 alias la='ls -ltra --color=auto'
-alias k='exit'
 alias lsb='ls -l --color=auto'
+alias sch='cd ~/Dropbox/School && ls'
+alias linux='cd ~/Dropbox/Linux/ && ls'
+
+# Programs
 alias x='ranger'
 alias v='vtop'
 alias nf='neofetch'
 alias h='htop'
-alias e='vim'
-alias se='sudo vim'
 alias g='gedit'
-alias B='source ~/.bashrc'
-alias c='clear'
+alias clock='tty-clock -t -s -c'
+alias Ping='ping -c 3 google.com'
+alias starwars='telnet towel.blinkenlights.nl'
+
+# Arch
+alias Syu='sudo pacman -Syu'
+alias Y='yaourt'
+alias pac='sudo pacman -S'
+alias pac-r='sudo pacman -R'
+alias Log='tail -f /var/log/pacman.log'
+alias Unlock='sudo rm /var/lib/pacman/db.lck'
+
+# tmux
+alias ta='tmux attach'
+
+# Configs
 alias cfv='vim ~/git/dotfiles/.vimrc'
 alias cfi='vim ~/git/dotfiles/.config/i3/config'
 alias cft='vim ~/git/dotfiles/.tmux.conf'
 alias cfb='vim ~/git/dotfiles/.bashrc'
 alias cfp='vim ~/git/dotfiles/.config/polybar/config'
 alias cfz='vim ~/git/dotfiles/.zshrc'
+alias cfst='vim ~/src/work/st/config.h'
+alias cfx='vim ~/git/dotfiles/.Xresources'
+
+# Git
 alias cdg='cd ~/git/dotfiles'
 alias gs='git status'
-alias ss='cd ~/scripts && ls'
-alias D='cd ~/Downloads && ls'
-alias Syu='sudo pacman -Syu'
-alias gg='cd ~/git/dotfiles'
-alias cdG='cd ~/git/dotfiles/'
-alias ..='cd ..'
-alias clock='tty-clock -t -s -c'
-alias Ping='ping -c 3 google.com'
-alias cfs='vim ~/src/work/st/config.h'
+
+# Gentoo
+alias HowLong='genlop -t'
+alias OneShot='emerge --oneshot portage'
+alias Rebuild='revdep-rebuild -v'
+alias Sync='time emerge --sync'
+alias S='emerge -s'
+alias I='time emerge -av'
+alias Uworld='time emerge --ask --verbose --update --newuse --deep @world'
+alias Uworld-bdeps='time emerge --ask --newuse --update --deep --with-bdeps=y @world'
+alias Esync='eix-sync'
+alias Eupdate='eix --update'
+alias cdP='cd /etc/portage && sudo su'
+alias cdU='cd /etc/portage/package.use && sudo su'
+alias cdB='cd /etc/portage/package.mask && sudo su'
+alias cdK='cd /etc/portage/package.accept_keywords && sudo su'
+alias cfm='sudo vim /etc/portage/make.conf'
+
+# Portage
+alias F='sudo tail -f /var/log/emerge-fetch.log'
+alias E='sudo tail -f /var/log/emerge.log'
+
+# Fonts
+alias Fonts='fc-cache -vf ~/.fonts'
+
+# X Resources Stuff
+alias XTR='xrdb -merge ~/.Xresources'
 
 # }}}
 # ZSH Functions {{{
