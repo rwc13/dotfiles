@@ -199,10 +199,10 @@ bindsym $mod+Shift+0	move container to workspace $ws10
 
 # Defualt i3status or i3blocks
 bar {
-       #status_command ~/.config/bumblebee-status/bumblebee-status -m sensors nic battery kernel datetime -p nic.exclude="enp0s25,lo" datetime.format="%a, %b %d, %y at %I:%M %p" -t powerline
-        status_command i3status
+       status_command ~/.config/bumblebee-status/bumblebee-status -m sensors nic battery kernel datetime -p nic.exclude="enp0s25,lo" datetime.format="%a, %b %d, %y at %I:%M %p" -t solarized-powerline
+       # status_command i3status
 	position bottom
-	font pango:Source Code Pro 6
+	font pango:Droid Sans Mono for Powerline 7
 }
 
 # polybar

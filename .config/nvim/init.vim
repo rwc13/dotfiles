@@ -14,6 +14,7 @@ Plug 'Shougo/unite.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'edkolev/tmuxline.vim'
 Plug 'godlygeek/tabular'
+Plug 'mhinz/vim-startify'
 
 " Status
 Plug 'vim-airline/vim-airline'
@@ -81,7 +82,7 @@ autocmd BufRead * normal zz
 
 " Statusline and Tabline
 let g:airline_theme='light'
-let g:airline#extensions#tabline#enabled = 1
+"let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#whitespace#enabled = 0
 
 " NERDTree
@@ -148,6 +149,14 @@ nnoremap <leader>q :q!<cr>
 
 " leader-x to save/quit
 nnoremap <leader>x :x<cr>
+
+" paste mode
+nnoremap <leader>p :set paste<cr>
+nnoremap <leader>l :set nopaste<cr>
+
+" splits to blank vim
+nnoremap <leader>v :vnew<cr>
+nnoremap <leader>h :new<cr>
 
 " Reload vimrc
 nnoremap <leader>rv :source<Space>$MYVIMRC<cr>
@@ -233,6 +242,7 @@ nmap N Nzz
 " one line at a time, all the time
 noremap j gj
 noremap k gk
+
 " Quick pairs
 imap <leader>' ''<ESC>i
 imap <leader>" ""<ESC>i

@@ -1,7 +1,7 @@
 # .zshrc
 # Author: rwc13
 
-# Themeing {{{
+# Theming {{{
 
 ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="gentoo"
@@ -9,7 +9,7 @@ ZSH_THEME="gentoo"
 source $HOME/.oh-my-zsh/oh-my-zsh.sh
 source $HOME/git/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-#}}}
+# }}}
 # Settings {{{
 
 export TERM=xterm-256color
