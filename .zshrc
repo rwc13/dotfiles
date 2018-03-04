@@ -18,10 +18,11 @@ export BROWSER="firefox"
 export BROWSERCLI="w3m"
 export MOVPLAY="mpv"
 export PICVIEW="feh"
-export SNDPLAY="mpv"
+#export MANPAGER="nvim +set\ filetype=man -"    # nvim
+export MANPAGER="/bin/sh -c \"col -b | vim --not-a-term -c 'set ft=man ts=8 nomod nolist noma' -\""      # vim
 
 #export PATH
-export PATH=${PATH}:/$HOME/scripts:/$HOME/bin
+export PATH=${PATH}:/$HOME/scripts:/$HOME/bin:/$HOME/i3ass/src/ass
 
 # }}}
 # Aliases {{{
@@ -31,7 +32,7 @@ alias k='exit'
 alias c='clear'
 
 # vim
-alias vim='nvim'
+#alias vim='nvim'
 alias e='vim'
 alias se='sudo vim'
 
@@ -113,6 +114,7 @@ alias XTR='xrdb -merge ~/.Xresources'
 
 # }}}
 # ZSH Functions {{{
+
 # start tmux
 #if [[ -z "$TMUX" ]]; then
 #	tmux;

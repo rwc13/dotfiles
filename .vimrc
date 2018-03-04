@@ -1,9 +1,10 @@
 " .vimrc
 " Author: rwc13
 
-" Plugins {{{
+" Plugins {{{ 
 
-call plug#begin('~/.local/share/nvim/plugged')
+"call plug#begin('~/.local/share/nvim/plugged')     "nvim
+call plug#begin('~/.vim/plugged')                   "vim
 
 " tools
 Plug 'junegunn/vim-easy-align'
@@ -55,8 +56,8 @@ set showbreak=↪
 set wrap
 set splitright
 set splitbelow
-set wildmode=longest,list,full
-set wildmenu
+"set wildmode=longest,list,full
+"set wildmenu
 "set termguicolors
 
 " Correct Splits
@@ -84,6 +85,7 @@ autocmd BufRead * normal zz
 
 " Statusline and Tabline
 let g:airline_theme='light'
+"let g:airline_theme='molokai'
 let g:airline#extensions#tabline#enabled = 0
 let g:airline#extensions#whitespace#enabled = 0
 
@@ -95,7 +97,7 @@ let g:airline#extensions#whitespace#enabled = 0
 " Config
 let NERDTreeShowHidden=1
 let g:NERDTreeWinPos = "right"
-let g:NERDTreeWinSize=35
+let g:NERDTreeWinSize=40
 
 " Toggle
 nmap <F2> :NERDTreeToggle<CR>
@@ -135,9 +137,11 @@ let g:airline#extensions#tmuxline#enabled = 0
 " }}}
 " Colorscheme {{{
 
-set background=dark
-"set background=light
-colorscheme solarized
+"set background=dark
+set background=light
+colorscheme github
+"colorscheme molokai
+"colorscheme solarized
 
 " }}}
 " Keybinding {{{
@@ -233,6 +237,7 @@ inoremap <c-f> <c-x><c-f>
 
 " edit config files
 nnoremap <leader>eb :vsplit ~/git/dotfiles/.bashrc<cr>
+nnoremap <leader>ez :vsplit ~/git/dotfiles/.zshrc<cr>
 nnoremap <leader>ep :vsplit ~/git/dotfiles/.config/polybar/config<cr>
 nnoremap <leader>et :vsplit ~/git/dotfiles/.tmux.conf<cr>
 nnoremap <leader>ev :vsplit ~/git/dotfiles/.config/nvim/init.vim<cr>
@@ -280,19 +285,19 @@ function! ToogleFold()
 endif
 endfunction
 
-" using vim in manpages
+" using nvim in manpages
 augroup manlaunchtoc
-	    autocmd!
-	        if has('nvim')
-			        autocmd FileType man
-				            \ call man#show_toc() |
-				            \ setlocal laststatus=0 nonumber norelativenumber |
-				            \ nnoremap <buffer> l <Enter> |
-				            \ wincmd H |
-				            \ vert resize 35 |
-				            \ wincmd p
-				    endif
-				    augroup end
+ autocmd!
+ if has('nvim')
+ 	autocmd FileType man
+        \ call man#show_toc() |
+        \ setlocal laststatus=0 nonumber norelativenumber |
+        \ nnoremap <buffer> l <Enter> |
+        \ wincmd H |
+        \ vert resize 35 |
+        \ wincmd p
+ endif
+ augroup end
 
 " }}}
 

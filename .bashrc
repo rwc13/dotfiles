@@ -25,7 +25,7 @@ if [[ -z $DISPLAY ]]; then
   fi
 
   [ -z "$input" ] && startx > /dev/null 2>&1
-  
+
 fi
 
 #(cat ~/.cache/wal/sequences &)
@@ -134,7 +134,7 @@ alias cfs='vim ~/src/work/st/config.h'
 #  local newpth=""
 #  local d=
 #  apa=( ${pth//\//' '} )
-#  
+#
 #  for d in ${apa[@]}; do
 #    [[ $d = '~' ]] && newpth='~' && continue
 #    # if first char is '.', grab the second
@@ -151,6 +151,4 @@ alias cfs='vim ~/src/work/st/config.h'
 #PROMPT_COMMAND=prompt_generator
 
 # Commands on source
-
 clear
-source ~/.bash_shortcuts
